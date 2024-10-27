@@ -31,3 +31,11 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('id', 'name', 'description', 'subcategories')
+
+
+class SimilarProductSerializer(serializers.Serializer):
+    query = serializers.CharField()
+    add_condition = serializers.BooleanField(default=False)
+    same_category = serializers.BooleanField(default=True)
+    category_name = serializers.CharField(required=False)
+    n_results = serializers.IntegerField(min_value=1, max_value=10)
